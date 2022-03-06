@@ -1,0 +1,10 @@
+
+POST http://localhost:3300/authors
+Content-Type: application/json
+
+{
+    "name":"Agostinho André Mendez de Carvalho",
+    "pseudonym":"Uanhenga Xitu",
+    "birthdate":"1924-08-29",
+    "cover":null
+}

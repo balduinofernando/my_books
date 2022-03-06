@@ -3,7 +3,7 @@ POST http://localhost:3300/users
 Content-Type: application/json
 
 {
-    "name":"Aguinaldo Fernando",
-    "email":"aguidavid@sapo.ao",
-    "password":"fernando"
+    "name":"Rei Juliano",
+    "email":"king_julian@gmail.com",
+    "password":"madagascar"
 }

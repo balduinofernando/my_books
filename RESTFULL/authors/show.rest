@@ -1,0 +1,1 @@
+GET http://localhost:3300/authors/206eb022-88ba-4db6-bea7-9caced28eb5e

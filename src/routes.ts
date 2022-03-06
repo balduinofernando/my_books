@@ -1,9 +1,14 @@
 import { Router } from "express";
+import { AuthorController } from "./controllers/AuthorController";
 import { UserController } from "./controllers/UserController";
 const route = Router();
 
-const userController = new UserController();
+route.get("/users", new UserController().index);
+route.post("/users", new UserController().create);
 
-route.post("/users", userController.create);
+// authors endpoints
+route.get("/authors", new AuthorController().index);
+route.post("/authors", new AuthorController().store);
+route.get("/authors/:id", new AuthorController().show);
 
 export { route };

@@ -10,5 +10,6 @@ route.post("/users", new UserController().create);
 route.get("/authors", new AuthorController().index);
 route.post("/authors", new AuthorController().store);
 route.get("/authors/:id", new AuthorController().show);
+route.put("/authors/:id", new AuthorController().update);
 
 export { route };

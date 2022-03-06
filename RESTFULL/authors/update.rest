@@ -1,0 +1,10 @@
+
+PUT http://localhost:3300/authors/3bdd6798-57cf-4ba7-865d-3f3a922bffd8
+Content-Type: application/json
+
+{
+    "name":"Agostinho André Mendes de Carvalho",
+    "pseudonym":"Uanhenga Xitu",
+    "birthdate":"1924-08-29",
+    "cover":"ola.jpg"
+}

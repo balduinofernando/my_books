@@ -2,6 +2,12 @@ import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import { Author } from "../models/Author";
 
+interface AuthorData {
+  name: string;
+  pseudonym: string;
+  birthdate: string;
+  cover: string;
+}
 class AuthorController {
   async index(request: Request, response: Response) {
     const authorRepository = getRepository(Author);
@@ -36,11 +42,32 @@ class AuthorController {
 
   async show(request: Request, response: Response) {
     const { id } = request.params;
-    
+
     const authorRepository = getRepository(Author);
     const author = await authorRepository.findOne({ id });
-    
+
     return response.status(200).json({ author });
+  }
+
+  async update(request: Request, response: Response) {
+    const { id } = request.params;
+    const { name, pseudonym, birthdate, cover } = request.body;
+
+    const formData: AuthorData = request.body;
+
+    const authorRepository = getRepository(Author);
+    const author = await authorRepository.findOneOrFail({ id });
+
+    author.name = name;
+    author.pseudonym = pseudonym;
+    author.birthdate = birthdate;
+    author.cover = cover;
+
+    await authorRepository.update({ id }, author);
+
+    return response
+      .status(200)
+      .json({ message: "The author data has been updated", author });
   }
 }
 

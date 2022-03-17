@@ -1,10 +1,9 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
-import { v4 as uuid } from "uuid";
+import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("authors")
 class Author {
   @PrimaryColumn()
-  readonly id: string;
+  readonly id: number;
 
   @Column()
   name: string;
@@ -20,7 +19,7 @@ class Author {
 
   constructor() {
     if (!this.id) {
-      this.id = uuid();
+      this.id = this.id;
     }
   }
 }

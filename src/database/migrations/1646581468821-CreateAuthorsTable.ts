@@ -8,7 +8,8 @@ export class CreateAuthorsTable1646581468821 implements MigrationInterface {
         columns: [
           {
             name: "id",
-            type: "varchar",
+            type: "int",
+            isGenerated: true,
           },
           {
             name: "name",

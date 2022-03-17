@@ -4,7 +4,7 @@ import "./database";
 import { route } from "./routes";
 
 const app = express();
-const PORT = process.env.PORT || 3300;
+const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
 app.use(route);

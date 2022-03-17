@@ -11,7 +11,9 @@ interface AuthorData {
 class AuthorController {
   async index(request: Request, response: Response) {
     const authorRepository = getRepository(Author);
-    const authors = await authorRepository.find({ order: { name: "ASC" } });
+    const authors = await authorRepository.find({
+      order: { pseudonym: "ASC" },
+    });
 
     return response.status(200).json({ authors });
   }
@@ -44,7 +46,7 @@ class AuthorController {
     const { id } = request.params;
 
     const authorRepository = getRepository(Author);
-    const author = await authorRepository.findOne({ id });
+    const author = await authorRepository.findOne({ where: { id: id } });
 
     return response.status(200).json({ author });
   }
@@ -56,7 +58,7 @@ class AuthorController {
     const formData: AuthorData = request.body;
 
     const authorRepository = getRepository(Author);
-    const author = await authorRepository.findOneOrFail({ id });
+    const author = await authorRepository.findOneOrFail({ where: { id: id } });
 
     author.name = name;
     author.pseudonym = pseudonym;
@@ -68,6 +70,19 @@ class AuthorController {
     return response
       .status(200)
       .json({ message: "The author data has been updated", author });
+  }
+
+  async delete(request: Request, response: Response) {
+    const { id } = request.params;
+
+    const authorRepository = getRepository(Author);
+    const author = await authorRepository.findOneOrFail({ where: { id: id } });
+
+    await authorRepository.delete(author);
+
+    return response
+      .status(200)
+      .json({ message: "The author has been deleted" });
   }
 }
 
